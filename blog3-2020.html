@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+
+<html>
+
+    <body class="is-preload">
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <link href="assets/css/prism.css" rel="stylesheet" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <title>Learning Nerual networks with Keras and linear regression</title>
+
+        <nav id="nav">
+            <ul class="container">
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+
+        <article class="wrapper style3">
+            
+           
+            
+        
+            <h1>Learning TensorFlow/Keras by Linear regression </h1>
+                <p><b>
+                This is my attempt the learn artificial neural networks (ANNs) by breaking them down <br>
+                into there constituent parts and running as simple code as possible. 
+                </b>
+                </p>
+            <h4>Biological neurons</h4>
+                <pre>
+                    If my memory from my undergraduates days is correct, neurons are activated only once there is enough 
+                    'neurotransmitter' at the synapse. Then an electrical signal travels along the axon to whatever is at the other 
+                    end - probably another neuron.
+                </pre>
+            <h4>Artificial neurons (AN)</h4>
+                <pre>
+                    Were designed to replicate biological neurons. And so they essentially do the same thing, but with maths!
+                    
+                    If you need more than a laymans, half-remembered, explanation Google is your friend.
+                </pre>
+            <h4>Learning how ANs work</h4>
+                <p>
+                    First we need some data for our neuron to use. I am going to create some data that makes sense to us and isn't just noise.  
+                </p>
+
+            <pre><code class="language-python">
+                                                def generate_data():
+                                                    x = np.linspace(0, 1, 100)
+                                                    y = 1.35 * x + np.random.randn(*x.shape) * 0.33 + 0.5
+                                                    return x, y
+                                                
+                                                X, y = generate_data()
+            </code>
+            </pre>
+            <span class="image"><img src="images/lineardata.png" alt="" /></span>
+                <p>
+                    So, we can see we have some data that are positvely correlated.
+                </p>
+                <p>
+                    Now I am going to make a model using <a href="https://www.tensorflow.org/">TensorFlow</a> and the 
+                    <a href="https://keras.io/">Keras</a> library. 
+
+                    If you don't understand Python perhaps this will not be for you. <br>
+                    All I am doing is creating a neural network with a single neuron
+                </p>
+                <pre><code class="language-python">
+                                                def build_model():
+                                
+                                                    activation = 'linear'
+                                                    
+                                                    input_layer = Input(shape=[1])
+                                                    output = Dense(1, activation = activation)(input_layer)
+                                                    
+                                                    model = Model(inputs=input_layer, outputs=output)
+                                
+                                                    return model
+                </code>
+                </pre>
+              <h4>
+                  My 'explanation' of the model and the basics of how it works
+              </h4>  
+              <pre>
+                
+                Input layer - literally the input (one dimensional vector) or 1 feature, no bias or weight.
+                This is where we input the data that we think may help us predict whatever our target is - in this case the value of y. 
+                Output (Dense) - there is no 'outputlayer' you use a dense layer which has a weight (w) and bias (b).
+                
+                Weight = slope or gradient
+                
+                Bias = intercept
+                
+                Essentially, weight and bias are both trainable parameters and we adjust them as needed. So this is why model.summary() 
+                gives a value of two. If we had a hidden dense layer in the middle with one unit how many trainable paramters would we have? 
+                Yep, 4.
+
+                As far as I am aware, this is the smallest possible functioning ANN that can fit 2 dimensional data.
+                If we had a straigh horizontal line we could not use the bias paramter and only have a weight (use_bias = False)
+                
+                Just like the equation of the line y = mx + c. 
+                Each value passed into the neuron gets multiplied by w and b is added to the product - w(x) + b. 
+                                Hopefully the value the function returns is equal to y.
+                
+                In this case I am using a linear <a href="https://keras.io/layers/core/#activation">activation</a> function which just returns the input tensor - doesn't do anything.
+            
+                As to how and when the activation is used, I believe if the value of w(x) + b exceeds a certain value (depends on the function) 
+                the the neuron is activated  - gives output.
+              </pre>
+
+              <h4>
+                Running the model
+            </h4> 
+            <pre><code class="language-python">
+                                            optimizer = Adam(learning_rate = 0.6)
+                                            model = build_model()
+                                            model.compile(loss='mean_squared_error',optimizer=optimizer)
+                                            history = model.fit(X,y,epochs=30, verbose=0)
+                                            model.summary()
+            </code>
+            </pre>
+            <span class="image"><img src="images/model parameters.png" alt="" /></span>
+
+            <pre>
+
+                <b>
+                Now to check the performance
+                </b>
+            </pre>
+            <pre><code class="language-python">
+                                            slope, intercept, r_value, p_value, std_err = stats.linregress(X,y)
+                                            plt.scatter(X,y)
+                                            plt.plot(X,model.predict(X), color = 'r', label = 'neural-net')
+                                            plt.plot(X, X*slope + intercept, color = 'g', label = 'lin-regress')
+                                            plt.legend()
+                                            plt.savefig('final-fig.png', dpi = 100)
+            </code>
+            </pre>
+            <span class="image"><img src="images/final-fig.png" alt="" /></span>
+            <pre>
+
+            The artificial neuron fit the data almost perfectly! 
+            </pre>
+
+
+            <pre><code class="language-python">
+                                            w, b = model.layers[1].get_weights()
+                                            m, c = slope, intercept
+
+                                            print(f'weight {w[0][0]:.2f}, gradient {m:.2f},\nbias {b[0]:.2f}, intercept {c:.2f}')
+
+                                            weight 1.25, gradient 1.27,
+                                            bias 0.52, intercept 0.51
+                </code>
+                </pre>
+                <pre>
+                    So now the question is, how are the weights and biases updated?
+
+                    My assumption: After each epoch, the weights and biases are adjusted, randomly-ish and 
+                    if the accuracy improves it carries on adjusting in that direction, if it decreases it changes direction. 
+                    How these values are changed depends on the optimizer in my case Adam?
+
+                    The parameter learning_rate is how big the steps are in the changes the network makes to the weights and bisases, the default is 0.001. 
+                    When I left it default with 1000 epochs the weight and bais was equal to the results of linear regression. 
+                    I have seen people adjust this dynamically so the learning rate becomes slower over time - takes smaller 
+                    steps to hone in on the true value.
+
+                    I guess it is a trade-off between speed and accuracy - yet another parameter to optimse!
+                </pre>
+
+            <pre>
+                <b>
+                    In the next post about this I shall try and fit some polynomial data, 
+                    and hopefully learn how the weights and biases are changed
+                </b>
+            </pre>    
+            <pre><code class="language-python">
+                                                            #packages used
+                                                            import tensorflow as tf
+                                                            import numpy as np
+                                                            import matplotlib.pyplot as plt
+                                                            import keras
+                                                            from keras.models import Sequential, Model
+                                                            from keras.layers import Dense, Input
+                                                            from keras.optimizers import Adam
+                                                            from scipy import stats
+                </code>
+                </pre>
+
+
+        </article>
+
+        <div class="col-12-small">
+            <hr />
+            <h3>Find me on ...</h3>
+            <ul class="social" id = "contact">
+                <li><a href="https://twitter.com/JLJ_1" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="https://www.linkedin.com/in/jljasper" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                <li><a href="https://github.com/JLJ90" class="icon brands fa-github"><span class="label">Github</span></a></li>
+            </ul>
+            <hr />
+        </div>
+       
+
+
+
+
+
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/prism.js"></script>
+    </body>
+
+</html>
+
