@@ -40,7 +40,7 @@
                 </pre>
             <h4>Learning how ANs work</h4>
                 <p>
-                    First we need some data for our neuron to use. I am going to create some data that makes sense to us and isn't just noise.  
+                    First I need to make some data. I am going to create some data that makes sense to me and isn't just noise.  
                 </p>
 
             <pre><code class="language-python">
@@ -81,9 +81,9 @@
               </h4>  
               <pre>
                 
-                Input layer - literally the input (one dimensional vector) or 1 feature, no bias or weight.
+                input_layer - literally the input (one dimensional vector) or 1 feature, no bias or weight.
                 This is where we input the data that we think may help us predict whatever our target is - in this case the value of y. 
-                Output (Dense) - there is no 'outputlayer' you use a dense layer which has a weight (w) and bias (b).
+                Output (Dense) - there is no 'output_layer' you use a dense layer which has a weight (w) and bias (b).
                 
                 Weight = slope or gradient
                 
@@ -103,7 +103,7 @@
                 In this case I am using a linear <a href="https://keras.io/layers/core/#activation">activation</a> function which just returns the input tensor - doesn't do anything.
             
                 As to how and when the activation is used, I believe if the value of w(x) + b exceeds a certain value (depends on the function) 
-                the the neuron is activated  - gives output.
+                the the neuron is activated  - gives output. Just like a biological neuron.
               </pre>
 
               <h4>
