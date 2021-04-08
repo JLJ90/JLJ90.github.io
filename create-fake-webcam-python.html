@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+
+<body class="is-preload">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link href="assets/css/prism.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Manipulating webcam with Python</title>
+
+    <nav id="nav">
+        <ul class="container">
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <article class="wrapper style3">
+
+    <h1>Hacking a webcam with python</h1>
+
+    <div class="center">
+    <p>
+        During lockdown, like everyone I have spent a lot of time on video calls. 
+        As such, I have problems with my cheap webcam, which came without any software 
+        (mostly whitebalancing issues). I thought I would try and modify the input with code!
+    </p>
+    </div>
+    
+    <h4>Introduction</h4>
+
+    <div class="center">
+        <p>I am doing this on Ubuntu and have not tried to do this on any other OS. <br>
+            The process will be: <b>webcam input </b> -- <b>code</b> -- <b>output to virtual camera</b> <br>
+            To do this I am using v4l video for linux which can be installed with: 
+        </p>
+    </div>
+
+    <div class="container">
+    <pre>
+    <code class='language-bash'>
+    sudo apt-get install v4l2loopback-utils
+    </code>
+    </pre>
+    </div>
+
+    <div class="center">
+        <p>
+        Now we need to create a virtual device for our system to use.
+        </p>
+    </div>
+
+    <div class="container">
+        <pre>
+        <code class='language-bash'>
+        sudo modprobe v4l2loopback devices=1
+        </code>
+        </pre>
+    </div>
+
+    <div class="center">
+        <p>
+            Now we have a virtual device - on my system it is at /dev/video2
+            We also need to install <a href="https://github.com/jremmons/pyfakewebcam">pyfakewebcam</a>, to send the data to our virtual webcam. 
+            Now we can write some code to modify our webcam.
+        </p>
+    </div>
+    
+    <div class="container">
+        <pre>
+        <code class='language-python'>
+            import pyfakewebcam
+            import cv2
+            cam = cv2.VideoCapture(0)
+
+            camera = pyfakewebcam.FakeWebcam('/dev/video2', 640, 480)
+
+
+            def get_frame(cam):
+                ret_val, img = cam.read()
+                img = cv2.resize(img, (640,480), interpolation = cv2.INTER_AREA)
+                return img
+
+            while True:
+                frame = get_frame(cam)
+                camera.schedule_frame(frame)
+        </code>
+        </pre>
+    </div>
+
+    <div class="center">
+        <p>
+            The only issue I had was the webcam input size and the output, you need to make sure these match! <br>
+            Other than that all you have to do is modify the image (frame) however you wish. In future I intend to add a filter
+            that will remove the background or blur it like you can do on MS: teams (and probably many others). <br>
+            There may be many other ways of doing this, but this is the way I found to do it.
+        </p>
+    </div>
+
+    </article>
+
+    <div class="col-12-small">
+        <hr />
+        <h3>Find me on ...</h3>
+        <ul class="social" id = "contact">
+            <li><a href="https://twitter.com/JLJ_1" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="https://www.linkedin.com/in/jljasper" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/Jake-Jasper" class="icon brands fa-github"><span class="label">Github</span></a></li>
+        </ul>
+        <hr />
+    </div>
+   
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/prism.js"></script>
+</body>
+
+</html>
