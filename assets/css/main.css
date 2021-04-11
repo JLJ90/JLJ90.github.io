@@ -1765,6 +1765,7 @@ input, select, textarea {
 	ul {
 		list-style: disc;
 		padding-left: 1em;
+    	list-style-position: inside;
 	}
 
 		ul li {

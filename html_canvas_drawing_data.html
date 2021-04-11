@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+
+<html>
+
+    <body class="is-preload">
+        <link rel="stylesheet" href="assets/css/main.css" /> 
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <title>Draw and animate your data</title>
+
+        <nav id="nav">
+            <ul class="container">
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </body>
+        <article class="wrapper style3">
+
+
+
+<canvas width="600" height="600" id="sandbox" ></canvas>
+<style>
+    canvas {
+    border: 3px solid #000000;
+}
+</style>
+<title>Draw your data</title>
+
+
+
+<script src="canvas_script.js"></script> 
+<br>
+<br>
+<button onclick="clear_array()">Reset</button>
+<button onclick="update(); get_start_mean()">Animate</button>
+<button onclick="pause()">Pause</button>
+<!-- <button onclick="create_table()">Create data table</button> -->
+
+<br>
+<br>
+<label><b>X mean: </b></label><output id = 'current_xmean'></output>
+<br>
+<br>
+<label><b>Y mean: </b></label><output id = 'current_ymean'></output>
+<br>
+<br>
+
+
+<ul>
+    Todo:
+    <li>basically copy all functionality that I have in the <a href="https://github.com/Jake-Jasper/DataCreator">DataCreator app</a></li>
+    <li>add ability to save data</li> 
+    <li>add functionality for second variable</li>
+    <li>add data scaling</li>
+
+</ul>
+
+<div class="col-12-small">
+    <hr />
+    <h3>Find me on ...</h3>
+    <ul class="social" id = "contact">
+        <li><a href="https://twitter.com/JLJ_1" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="https://www.linkedin.com/in/jljasper" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+        <li><a href="https://github.com/Jake-Jasper" class="icon brands fa-github"><span class="label">Github</span></a></li>
+    </ul>
+    <hr/>
+</div>
+
+</html>
