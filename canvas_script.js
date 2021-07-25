@@ -131,3 +131,32 @@ function get_mean() {
 function pause() {
     window.alert('close this notification to unpause')
 }
+
+// Generate table to save data
+
+function save_data() {
+    // for some reason I can't get the table from the new window. I need to figure out how to reference the new window
+    let doc = window.open("canvas-save-data.html", "_blank");
+    add_table_data(doc);
+    
+
+}
+
+function add_table_data(doc) {
+    for (let i = 0; i < 10; i++) {
+        // Get a reference to the table
+        let tableRef = doc.getElementById('table-data');
+        // Insert a row at the end of the table
+        let newRow = tableRef.insertRow(-1);
+      
+        // Insert a cell in the row at index 0
+        let newCell1 = newRow.insertCell(0);
+        let newCell2 = newRow.insertCell(1);
+      
+        // Append a text node to the new cells
+        newCell1.innerHTML = '1';
+        newCell2.innerHTML = '2';
+      }
+
+}
+
