@@ -3,20 +3,30 @@
 <html lang='en-gb' >
 
     <body class="is-preload">
+        <head>
         <link rel="stylesheet" href="assets/css/main.css" /> 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="description" content="Using the canvas feature of HTML5 to generate data" />
         <title>Draw and animate your data</title>
-
+        </head>
         <nav id="nav">
             <ul class="container">
                 <li><a href="index.html">Home</a></li>
             </ul>
         </nav>
     </body>
-        <article class="wrapper style3">
+<article class="wrapper style3">
+<h3>Using HTML canvas to create visual data</h3>
+<pre>
+    Click on the canvas below to add points to the canvas, you can see the mean in both the x and y direction below the canvas.
+    When you're happy with your data you can generate a data table and copy the data to you clipboard 
+    and then to anywhere else you would like e.g. an Excell spreadsheet.
 
+    If you want a more advanced version of what you see here please look at <a href="https://github.com/Jake-Jasper/DataCreator">Data Creator App</a>
 
+    To get the code for this <a href="https://github.com/Jake-Jasper/Jake-Jasper.github.io">Go Here</a>
+</pre>
 
 <canvas width="600" height="600" id="sandbox" ></canvas>
 <style>
@@ -34,8 +44,7 @@
 <button onclick="clear_array()">Reset</button>
 <button onclick="update(); get_start_mean()">Animate</button>
 <button onclick="pause()">Pause</button>
-<button onclick="save_data()">Save Data</button>
-<!-- <button onclick="create_table()">Create data table</button> -->
+<button onclick="generate_data()">Populate Data table</button>
 
 <br>
 <br>
@@ -46,6 +55,21 @@
 <br>
 <br>
 
+<div class='container'>
+    <div class="center">
+        <div class="col-3">
+            <article class="box style1">
+                <header>
+                    Data Table
+                </header>
+            <table id="table-data">
+                <tr><td>X</td><td>Y</td></tr>
+            </table>
+            </article>
+        </div>
+    </div>
+</div>
+</article>
 
 
 
