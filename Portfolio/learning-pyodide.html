@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+
+<!--
+- It does not seem possible to have syntax highlighting in textarea html element
+- It seems I can only import modules with version 0.15 of the cdn
+-->
+
+
+<html>
+<body class="is-preload">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link href="assets/css/prism.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Using python in the browser</title>
+
+    <nav id="nav">
+        <ul class="container">
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <article class="wrapper style3">
+
+
+<head>
+    <script type="text/javascript">
+        window.languagePluginUrl = 'https://cdn.jsdelivr.net/pyodide/v0.17.0a2/full/';
+    </script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.17.0a2/full/pyodide.js"></script>
+</head>
+
+<body>
+    <p>You can execute any Python code. Just enter something in the box below and click the button.</p>
+    
+    <textarea id='code' style='width: 50%; font-family: "Courier New"' rows='10'>add python code here</textarea>
+    <br>
+    <button onclick='evaluatePython()'>Run</button>
+    <br>
+    <br>
+    <div>
+    Output:
+    </div>
+    
+    <textarea id='output' style='width: 50%; font-family: "Courier New"' rows='3' disabled></textarea>
+
+    <script>
+    const output = document.getElementById("output");
+    const code = document.getElementById("code");
+
+    // show output
+    function addToOutput(s) {
+        output.value =  s;
+    }
+
+    function evaluatePython() {
+        let output = pyodide.runPythonAsync(code.value)
+        .then(output => addToOutput(output))
+        .catch((err) => { addToOutput(err)});
+    }
+    
+    languagePluginLoader.then(()=>{
+        // override default print behavior
+        pyodide.globals.print = s => s
+    })
+    </script>
+</body>
+
+
+</article>
+
+<div class="col-12-small">
+    <hr />
+    <h3>Find me on ...</h3>
+    <ul class="social" id = "contact">
+        <li><a href="https://twitter.com/JLJ_1" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="https://www.linkedin.com/in/jljasper" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+        <li><a href="https://github.com/Jake-Jasper" class="icon brands fa-github"><span class="label">Github</span></a></li>
+    </ul>
+    <hr />
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/prism.js"></script>
+</body>
+
+</html>
