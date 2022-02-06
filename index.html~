@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+
+<html lang='en-gb'>
+	<head>
+		<title>Jake Jasper</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="google-site-verification" content="z95Tq0FPBsS2TPtYhc8RJNY8JubusIhlIffs6BUNsyg" />
+		<meta name="msvalidate.01" content="2FFB4C995BAA7675562F304C95A92ECD" />
+		<meta name="description" content="index page for Jake Jasper's website" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	
+		<!-- Clarity tracking code for https://jakejasper.xyz/ -->
+	<script>    
+	(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};        
+	t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+	y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})
+	(window, document, "clarity", "script", "a3muxt7bwt");
+	</script>	
+	</head>
+	
+	<body class="is-preload">
+
+		<!-- Nav -->
+			<nav id="nav">
+				<ul class="container">
+					<li><a href="#top">Top</a></li>
+					<li><a href="#work">Work</a></li>
+					<li><a href="/Writing/writing-index.html">Writing</a></li>
+					<li><a href="/Portfolio/portfolio-index.html">Portfolio</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</nav>
+
+		<!-- Home -->
+			<article id="top" class="wrapper style1">
+				<div class="container">
+					<div class="row">
+						<div class="col-4 col-5-large col-12-medium">
+							<span class="image fit"><img src="images/jake4.jpg" alt="" /></span>
+						</div>
+						<div class="col-8 col-7-large col-12-medium">
+							<header>
+								<h1><strong>Dr Jake Jasper</strong></h1>
+								Data analyst currently working for Waste Resource Action Plan (WRAP).
+							</header>
+						</div>
+
+				</div>
+			</div>
+			</article>
+
+		<article id="work" class="wrapper style3">
+			<div class="container">
+				<header>
+					<h2><strong>About me</strong></h2>
+				</header>
+					<div class="col-4 col-6-medium col-12-small">
+						<section class="box style1">
+							<p>
+								Up until very recently, I was a PhD researcher at the University of Reading, but I have now handed in my thesis and am awaiting my Viva.  My PhD was in Food and Nutritional Sciences, and my project was focussed around on-pack dates: how they contribute to waste and how they could be improved. Generally speaking, I had a very broad project covering biology, chemistry, microbiology and quite a lot of coding.
+
+								I am now trying to figure out what I want to do with the rest of my life. 
+
+
+
+							</p>
+
+						</section>
+
+					</div>
+				
+			</div>
+		</article>
+
+		<!-- Work -->
+			<article id="work" class="wrapper style2">
+				<div class="container">
+					<header>
+						<h2>Here's some of the stuff I do.</h2>
+					</header>
+					<div class="row aln-center">
+						<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1">
+								<h3>Research</h3>
+								<p>PhD researcher at the University of Reading. Here is my researchgate profile</p>
+								<a href="https://www.researchgate.net/profile/Jake_Jasper2" class="icon brands fa-researchgate"><span class="label">researchgate</span></a>
+							</section>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1">
+								<h3>kaggle</h3>
+								<p>My current hobby is Data Science, mainly in the form of kaggle. Here is my profile</p>
+								<a href="https://www.kaggle.com/jakelj" class="icon brands fa-kaggle"><span class="label">Kaggle</span></a>
+							</section>
+						</div>
+					</div>
+				</div>
+			</article>
+			<!-- Contact -->
+		<article>
+						<div class="col-12-small">
+							<hr />
+							<h3>Find me on ...</h3>
+							<ul class="social" id = "contact">
+								<li><a href="https://twitter.com/JLJ_1" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="https://www.linkedin.com/in/jljasper" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://github.com/Jake-Jasper" class="icon brands fa-github"><span class="label">Github</span></a></li>
+							</ul>
+							<hr />
+						</div>
+			</article>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+						
+			<!-- Clarity tracking code for https://jake-jasper.github.io/ -->
+			<script>
+				(function(c,l,a,r,i,t,y){
+					c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+					t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+					y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+				})(window, document, "clarity", "script", "7pqxdp5f57");
+			</script>
+
+	</body>
+</html>
