@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+
+<html lang='en-gb' >
+
+    <body class="is-preload">
+        <head>
+        <link rel="stylesheet" href="../assets/css/main.css" />
+        <link href="../assets/css/prism.css" rel="stylesheet" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="description" content="Interactive Normal distribution animation" />
+        <title>The normal distribution</title>
+        </head>
+        <nav id="nav">
+            <ul class="container">
+                <li><a href="../Portfolio/portfolio-index.html">Home</a></li>
+            </ul>
+        </nav>
+        <article class="wrapper style3">
+            <pre>
+               I have been investigating how to make dashboards as that seems to be the current
+               thing. I was very suprised to see how easy it was to make one with <a href="https://streamlit.io/">Streamlit</a>
+               Below, is an intereactive plot of the normal/Gaussian distribution hosted by streamlit and written
+               in Python.
+            </pre>
+        </article>
+
+        <article class="wrapper style3">
+        <iframe
+            src="https://share.streamlit.io/jake-jasper/streamlit-test/main/testApp.py"
+            width="100%"
+            height="1000px">
+        </iframe>
+    </article>
+
+    <article class="container">
+        <pre><code class="language-python">
+            import streamlit as st
+            import numpy as np
+            import seaborn as sns
+            import matplotlib.pyplot as plt
+
+            st.title("Normal distribution")
+            samples = st.slider("samples", 0,10_000, value=100)
+            mu = st.slider("mu",0.0,1.0,step=0.001, value=0.5)
+            sigma = st.slider("sigma",0.0,1.0, step=0.001, value=0.1)
+            sample = np.random.normal(mu, sigma, samples)
+            bins = st.slider("bins",1,1000, value=10)
+            fig, ax  = plt.subplots()
+            sns.histplot(sample, bins=bins, kde=True, ax=ax)
+            st.pyplot(fig)
+        </code>
+        </pre>
+    </article>
+
+    <article class="wrapper style3">
+        <pre>
+           To view your app in a local server you can use the code below. Streamlit can use a github
+           repository to product the app from and will automatically update when the repository is updated
+           the code for this example is host <a href="https://github.com/Jake-Jasper/streamlit-test">Here</a>
+        </pre>
+    </article>
+
+
+    <article class="container">
+        <pre><code class="language-bash">
+            : streamlit run myapp.py
+        </code>
+        </pre>
+    </article>
+
+
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/jquery.scrolly.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/prism.js"></script>
+    </body>
+
+</html>
